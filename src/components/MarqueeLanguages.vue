@@ -7,7 +7,7 @@
       <span
         v-for="language in LANGUAGES"
         :key="language.name"
-        class="mx-4 hover:cursor-pointer hover:opacity-80"
+        class="mx-4 hover:cursor-pointer hover:opacity-80 hover:scale-105 transition-all"
         @mouseenter="handleLanguage(language.color)"
         @mouseleave="handleLanguageLeave"
       >

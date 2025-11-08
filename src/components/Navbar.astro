@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import LogoSVG from "../assets/images/logo.svg";
+import LogoWin95SVG from "../assets/images/logo-win95.svg"
 
 const MENU = [
     {
@@ -33,18 +34,25 @@ const MENU = [
     <a href="/" class="hidden lg:block">
         <Image
             src={LogoSVG}
-            class="logo transition-all"
+            class="logo transition-all win95:hidden"
+            alt="Logo with my last name"
+        />
+        <Image
+            src={LogoWin95SVG}
+            class="logo transition-all win95:block hidden"
             alt="Logo with my last name"
         />
     </a>
     <ul
-        class="links ml-auto list-none py-2 px-6 border border-gray-600/50 rounded-full flex gap-4 backdrop-blur-md"
+        class="links ml-auto list-none py-2 px-6 border border-gray-600/50 rounded-full flex gap-4 backdrop-blur-md
+             win95:bg-win95-appBackground win95:rounded-none win95:border-win95-appBorder win95:border-3"
     >
         {
             MENU.map((item) => (
                 <li>
                     <a
-                        class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90 drop-shadow-navbar"
+                        class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90 drop-shadow-navbar
+                             win95:text-black win95:drop-shadow-none win95:hover:underline"
                         href={item.link}
                     >
                         {item.title}
@@ -52,10 +60,30 @@ const MENU = [
                 </li>
             ))
         }
+        <li class="hidden xs:block">
+            <button
+                class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90 drop-shadow-navbar
+                       win95:text-black win95:drop-shadow-none pixel-font win95:!font-[Nunito] win95:hover:underline"
+                id="toggle-theme"
+            >
+                Tema
+            </button>
+        </li>
     </ul>
 </header>
 
+<!-- <style>
+html[data-theme="win95"] .navbar .links {
+    @apply bg-gray-200 border border-gray-600;
+}
+</style> -->
+
 <script>
+    document.getElementById("toggle-theme")?.addEventListener("click", async () => {
+      const { toggleWin95Theme } = await import("../helpers/theme");
+      toggleWin95Theme();
+    });
+    
     let hasLargeWidth = window.innerWidth > 640;
     let isAtTop = window.scrollY <= 50;
     const navbarElement = document.getElementById("navbar");

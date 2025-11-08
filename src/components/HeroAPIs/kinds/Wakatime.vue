@@ -6,10 +6,12 @@
       <div
         v-for="(language, index) in state.data.languages"
         :key="index"
-        class="flex items-center gap-2 text-xs"
+        class="flex items-center gap-2 text-xs 
+               win95:text-win95-textSecondary"
       >
         <span
-          class="text-xs rounded-xl leading-6 px-2"
+          class="text-xs rounded-xl leading-6 px-2
+                 win95:rounded-none win95:px-3 win95:py-1 win95:border-win95-buttonBorder win95:border-2 win95:!text-win95-buttonText win95:!bg-win95-buttonFace"
           :class="getLanguageColor(language.name)"
         >
           {{ language.name }}

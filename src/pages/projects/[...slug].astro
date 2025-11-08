@@ -1,25 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Button from "../../components/Button.astro";
 import Tag from "../../components/Tag.vue";
 import { formatDate } from "../../helpers/date";
 import Layout from "../../layouts/Layout.astro";
 
-import externalLinkSVG from "../../assets/icons/external-link.svg";
+import ExternalLinkSVG from "../../assets/icons/external-link.svg";
 import { formatDataForMetaDescription } from "../../helpers/content";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
 
     return projects.map((entry) => ({
-        params: { slug: entry.slug },
+        params: { slug: entry.id },
         props: { entry },
     }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout
@@ -47,9 +47,10 @@ const { Content } = await entry.render();
                     <span class="flex gap-2 items-center justify-center">
                         Acessar projeto
                         <Image
-                            src={externalLinkSVG}
+                            src={ExternalLinkSVG}
                             alt="Símbolo de link externo"
                             width={14}
+                            class="win95:hidden"
                         />
                     </span>
                 </Button>

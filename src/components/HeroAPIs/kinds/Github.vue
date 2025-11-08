@@ -3,11 +3,13 @@
       v-if="state.data"
       class="flex gap-4 mt-2"
     >
-      <div class="flex gap-2 text-gray-200">
+      <div class="flex gap-2 text-gray-200
+                             win95:text-win95-textSecondary">
         <Tag>{{ state.data.repos }}</Tag>
         repositories
       </div>
-      <div class="flex gap-2 text-gray-200">
+      <div class="flex gap-2 text-gray-200
+                             win95:text-win95-textSecondary">
         <Tag>{{ state.data.followers }}</Tag>
         followers
       </div>

@@ -3,19 +3,25 @@
     v-if="state.data"
     class="flex flex-col text-sm w-full"
   >
-    <h2 class="text-base uppercase">
+    <h2 class="text-base uppercase
+             win95:text-black">
       {{ state.data.name }}
     </h2>
-    <span class="text-gray-400">{{ state.data.album }}</span>
+    <span class="text-gray-400
+                 win95:text-win95-textSecondary"
+    >
+      {{ state.data.album }}
+    </span>
     <div class="flex items-center justify-center gap-4 mt-2">
-      <span class="text-sm">{{ currentProgress }}</span>
-      <div class="relative w-full h-1 bg-gray-400 rounded-xl overflow-hidden">
+      <span class="text-sm win95:text-black">{{ currentProgress }}</span>
+      <div class="relative w-full h-1 bg-gray-400 rounded-xl overflow-hidden
+                  win95:rounded-none win95:h-4 win95:border win95:border-win95-progressBorder win95:bg-transparent">
         <div
-          class="absolute top-0 left-0 h-full bg-purple-600 "
+          class="absolute top-0 left-0 h-full bg-purple-600 win95:bg-win95-primary"
           :style="{ width: progressWidth }"
         />
       </div>
-      <span class="text-sm">{{ convertMsToMinutes(state.data.duration) }}</span>
+      <span class="text-sm win95:text-black">{{ convertMsToMinutes(state.data.duration) }}</span>
     </div>
   </div>
   <section

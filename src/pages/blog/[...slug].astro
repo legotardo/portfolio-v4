@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import Tag from "../../components/Tag.vue";
 import { formatDate } from "../../helpers/date";
 import Layout from "../../layouts/Layout.astro";
@@ -15,13 +15,13 @@ export async function getStaticPaths() {
     const projects = await getCollection("blog");
 
     return projects.map((entry) => ({
-        params: { slug: entry.slug },
+        params: { slug: entry.id },
         props: { entry },
     }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 let previousEntry: CollectionEntry<"blog"> | null | undefined = null;
 let nextEntry: CollectionEntry<"blog"> | null | undefined = null;
@@ -55,7 +55,7 @@ if (entry.data.previous) {
         >
             {
                 previousEntry && (
-                    <a href={`/blog/${previousEntry.slug}`}>
+                    <a href={`/blog/${previousEntry.id}`}>
                         <button class="flex gap-2 items-start group">
                             <Image
                                 src={angleLeftSVG}
@@ -74,7 +74,7 @@ if (entry.data.previous) {
             }
             {
                 nextEntry && (
-                    <a href={`/blog/${nextEntry.slug}`}>
+                    <a href={`/blog/${nextEntry.id}`}>
                         <button class="ml-auto flex gap-2 items-start group">
                             <div class="flex flex-col items-start">
                                 <span class="group-hover:text-purple-400 transition-colors text-start max-w-full sm:max-w-[200px]">

@@ -21,7 +21,8 @@ const allBlog = await getCollection("blog");
         <h1 class="text-4xl font-bold mt-8 -mb-2">Postagens</h1>
         <input
             id="search-blog"
-            class="py-3 px-5 text-sm max-w-[400px] rounded-3xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-gray-900 transition"
+            class="py-3 px-5 text-sm max-w-[400px] rounded-3xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-gray-900 transition
+                   win95:bg-white win95:border-3 win95:border-win95-inputBorder win95:px-2 win95:text-black win95:rounded-none win95:focus:ring-0"
             placeholder="Pesquise por um assunto..."
         />
         <!-- <ol
@@ -48,7 +49,7 @@ const allBlog = await getCollection("blog");
                 <a
                     id="blog-article"
                     data-title={article.data.title}
-                    href={`/blog/${article.slug}`}
+                    href={`/blog/${article.id}`}
                 >
                     <article class="flex flex-col gap-1 group">
                         <span class="text-xs text-gray-400 uppercase">

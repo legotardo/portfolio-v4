@@ -14,6 +14,7 @@ import Input from "../components/Input.astro";
 import Textarea from "../components/Textarea.astro";
 
 import LogoSVG from "../assets/images/logo.svg";
+import LogoWin95SVG from "../assets/images/logo-win95.svg"
 import reactSVG from "../assets/icons/react.svg";
 import databaseSVG from "../assets/icons/database.svg";
 import appsSVG from "../assets/icons/apps.svg";
@@ -21,6 +22,12 @@ import envelopeSVG from "../assets/icons/envelope.svg";
 import mapMarkerSVG from "../assets/icons/map-marker.svg";
 import githubSVG from "../assets/icons/github.svg";
 import linkedinSVG from "../assets/icons/linkedin.svg";
+
+import Win95Back from "../assets/icons/win95-back.webp";
+import Win95Front from "../assets/icons/win95-front.webp";
+import Win95Games from "../assets/icons/win95-games.webp";
+import Win95WorldSearch from "../assets/icons/win95-world-search.webp";
+import Win95Envelope from "../assets/icons/win95-envelope.webp";
 
 import faviconPNG from "../assets/images/favicon.png";
 ---
@@ -43,8 +50,13 @@ import faviconPNG from "../assets/images/favicon.png";
 	<main>
 		<section>
 			<Image
-				class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden"
+				class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden win95:hidden"
 				src={LogoSVG}
+				alt="Logo with my last name"
+			/>
+			<Image
+				class="w-full max-w-[450px] px-20 mt-6 mx-auto hidden win95:block lg:win95:hidden"
+				src={LogoWin95SVG}
 				alt="Logo with my last name"
 			/>
 			<section
@@ -74,7 +86,7 @@ import faviconPNG from "../assets/images/favicon.png";
 				</article>
 				<Image
 					id="background"
-					class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10 opacity-85"
+					class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10 opacity-85 win95:hidden"
 					src={background}
 					alt="Background"
 					loading="eager"
@@ -85,8 +97,8 @@ import faviconPNG from "../assets/images/favicon.png";
 		<MarqueeLanguages client:load />
 		<PlanetAnimation client:load />
 		<div class="text-center flex flex-col gap-4">
-			<h1 class="text-5xl font-bold uppercase text-image">Projetos</h1>
-			<span class="text-xl text-white/70">プロジェクト</span>
+			<h1 class="text-5xl font-bold uppercase text-image ">Projetos</h1>
+			<span class="text-xl text-white/70 win95:opacity-0">プロジェクト</span>
 		</div>
 		<ProjectsGrid class="default-container-size w-full mt-12" limit={3} />
 		<a class="mx-auto block mt-12 w-fit" href="/projects">
@@ -97,39 +109,39 @@ import faviconPNG from "../assets/images/favicon.png";
 		>
 			<Stars client:load />
 			<div class="text-center flex flex-col">
-				<h1 class="text-4xl font-bold mb-8">O que eu faço?</h1>
-				<p class="text-white/70">
+				<h1 class="text-4xl font-bold mb-8 ">O que eu faço?</h1>
+				<p class="text-white/70 ">
 					Eu sou um desenvolvedor web full-stack, com foco em
 					desenvolvimento de aplicações web e mobile.
 				</p>
-				<p class="text-white/70">
+				<p class="text-white/70 ">
 					Também tenho experiência com desenvolvimento de jogos e
 					aplicações desktop.
 				</p>
 			</div>
 
 			<div class="flex flex-col lg:flex-row gap-8">
-				<ExperienceCard id="experience-card" icon={reactSVG}>
-					<h2 slot="title" class="font-bold">Front-end</h2>
-					<span>
+				<ExperienceCard id="experience-card" icon={reactSVG} win95Icon={Win95Front}>
+					<h2 slot="title" class="font-bold win95:text-black ">Front-end</h2>
+					<span class="">
 						Desenvolvimento de interfaces elegantes e responsivas
 						com foco na experiência do usuário. Utilizando
 						tecnologias como Vue.JS, React. Tenho experiência também
 						com aplicativos mobile utilizando React Native.
 					</span>
 				</ExperienceCard>
-				<ExperienceCard id="experience-card" icon={databaseSVG}>
-					<h2 slot="title" class="font-bold">Back-end</h2>
-					<span>
+				<ExperienceCard id="experience-card" icon={databaseSVG} win95Icon={Win95Back}>
+					<h2 slot="title" class="font-bold win95:text-black ">Back-end</h2>
+					<span class="">
 						Desenvolvimento de APIs robustas e escaláveis, com foco
 						na segurança e performance. Utilizando tecnologias como
 						NodeJS, Express. Também tenho experiência com bancos de
 						dados SQL e NoSQL.
 					</span>
 				</ExperienceCard>
-				<ExperienceCard id="experience-card" icon={appsSVG}>
-					<h2 slot="title" class="font-bold">Aplicativos e Jogos</h2>
-					<span>
+				<ExperienceCard id="experience-card" icon={appsSVG} win95Icon={Win95Games}>
+					<h2 slot="title" class="font-bold win95:text-black ">Aplicativos e Jogos</h2>
+					<span class="">
 						Desenvolvimento de aplicativos para computadores e
 						celular, utilizando linguagens como C++, C#,
 						React-Native, Java e Kotlin. Em questão de jogos, tenho
@@ -155,10 +167,11 @@ import faviconPNG from "../assets/images/favicon.png";
 				>
 					<ContactCard
 						icon={envelopeSVG}
+						win95Icon={Win95Envelope}
 						text="contato@legotardo.com"
 						active
 					/>
-					<ContactCard icon={mapMarkerSVG} text="Londrina, Brazil" />
+					<ContactCard icon={mapMarkerSVG} win95Icon={Win95WorldSearch} text="Londrina, Brazil" />
 				</div>
 				<div
 					class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12 *:transition-colors"
@@ -168,7 +181,7 @@ import faviconPNG from "../assets/images/favicon.png";
 						target="_blank"
 						rel="noreferrer"
 						aria-label="Github profile"
-						class="hover:bg-purple-700"
+						class="hover:bg-purple-700 win95-card"
 					>
 						<Image src={githubSVG} width={16} alt="Github logo" />
 					</a>
@@ -177,7 +190,7 @@ import faviconPNG from "../assets/images/favicon.png";
 						target="_blank"
 						rel="noreferrer"
 						aria-label="Linkedin profile"
-						class="hover:bg-purple-700"
+						class="hover:bg-purple-700 win95-card"
 					>
 						<Image
 							src={linkedinSVG}
@@ -189,7 +202,7 @@ import faviconPNG from "../assets/images/favicon.png";
 			</div>
 			<form
 				id="contact-form"
-				class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8"
+				class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8 win95-card"
 			>
 				<Input
 					id="name"

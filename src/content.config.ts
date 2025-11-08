@@ -1,3 +1,4 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const tags = z.array(z.enum([
@@ -7,13 +8,11 @@ const tags = z.array(z.enum([
 ]))
 
 const projectsCollection = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/projects" }),
     schema: ({ image }) => z.object({
         title: z.string(),
         subtitle: z.string().optional(),
-        cover: image().refine((img) => img.width >= 1080, {
-            message: "Cover image must be at least 1080 pixels wide!",
-        }),
+        cover: image(),
         link: z.string(),
         createdAt: z.string(),
         tags: tags
@@ -21,7 +20,7 @@ const projectsCollection = defineCollection({
 })
 
 const blogCollection = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
     schema: ({ image }) => z.object({
         title: z.string(),
         createdAt: z.string(),

@@ -11,7 +11,7 @@ const { id, name, placeholder, required, label } = Astro.props;
 ---
 
 <div class="flex flex-col gap-3">
-    <label class="text-white/70 text-sm" for={id}>
+    <label class="text-white/70 text-sm win95:text-win95-textSecondary" for={id}>
         {label}
     </label>
 
@@ -20,6 +20,6 @@ const { id, name, placeholder, required, label } = Astro.props;
         required={required}
         name={name}
         placeholder={placeholder}
-        class="w-full bg-transparent border-b border-white/30 focus:border-purple-600 focus:outline-none"
+        class="w-full bg-transparent border-b border-white/30 focus:border-purple-600 focus:outline-none win95:bg-white win95:border-3 win95:border-win95-inputBorder win95:px-2 win95:text-black"
     ></textarea>
 </div>

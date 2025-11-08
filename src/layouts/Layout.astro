@@ -1,7 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import type { ImageMetadata } from "astro";
 
 interface Props {
 	title: string;
@@ -56,6 +55,11 @@ function formatImageForMeta(): string | undefined {
 			)
 		}
 		<title>{title}</title>
+		<script>
+			import { initTheme } from "../helpers/theme";
+
+			initTheme();
+		</script>
 	</head>
 	<body>
 		<Navbar />
@@ -65,6 +69,8 @@ function formatImageForMeta(): string | undefined {
 </html>
 
 <style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 	:root {
 		--navbar-height: 5rem;
 	}
@@ -86,18 +92,34 @@ function formatImageForMeta(): string | undefined {
 
 	::selection {
 		@apply bg-purple-600 text-white;
+		@apply win95:bg-win95-primary;
 	}
 
 	::-moz-selection {
 		@apply bg-purple-600 text-white;
+		@apply win95:bg-win95-primary;
 	}
 
 	html {
 		scroll-behavior: smooth;
 	}
 
+	.pixel-font {
+		font-family: "Pixelify Sans", monospace, sans-serif !important;
+		-webkit-font-smoothing: none; /* Safari/Chrome */
+		-moz-osx-font-smoothing: auto; /* Firefox */
+		text-rendering: geometricPrecision !important;
+		text-shadow: none !important;
+		font-weight: normal !important;
+	}
+
 	body {
 		@apply bg-black text-white overflow-x-hidden;
+		@apply win95:bg-win95-windowsBackground;
+	}
+
+	* {
+		@apply win95:!pixel-font;
 	}
 
 	.default-container-size {
@@ -163,5 +185,9 @@ function formatImageForMeta(): string | undefined {
 
 	.markdown-prettier a {
 		@apply underline text-purple-400 hover:text-purple-500;
+	}
+
+	.win95-card {
+		@apply win95:bg-win95-appBackground win95:rounded-none win95:border-win95-appBorder win95:border-3 win95:backdrop-blur-none;
 	}
 </style>

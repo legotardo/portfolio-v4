@@ -26,24 +26,26 @@ const { limit, ...attrs } = Astro.props;
             .slice(0, limit ?? allProjects.length)
             .map((project) => (
                 <a
-                    href={`/projects/${project.slug}`}
+                    href={`/projects/${project.id}`}
                     id="project-card"
                     class="h-fit"
                 >
-                    <div class="default-card flex flex-col rounded-2xl group cursor-pointer">
+                    <div class="default-card flex flex-col rounded-2xl group cursor-pointer
+                                win95-card">
                         <Image
                             style={{ aspectRatio: "1.78" }}
                             src={project.data.cover}
                             alt={project.data.title}
                             widths={[500]}
-                            class="project-image group-hover:-translate-y-2 rounded-t-xl"
+                            class="project-image group-hover:-translate-y-2 win95:group-hover:-translate-y-0 rounded-t-xl win95:rounded-none"
                             loading="eager"
                         />
                         <div class="p-4">
-                            <h1 class="font-bold group-hover:text-purple-500 transition">
+                            <h1 class="font-bold group-hover:text-purple-500 transition
+                                       win95:text-black win95:group-hover:text-win95-buttonText win95:group-hover:underline">
                                 {project.data.title}
                             </h1>
-                            <span class="text-xs">
+                            <span class="text-xs win95:text-win95-textSecondary">
                                 {formatDate(project.data.createdAt)}
                             </span>
                             <div class="flex gap-1 mt-1">

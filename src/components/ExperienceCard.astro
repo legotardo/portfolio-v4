@@ -4,22 +4,31 @@ import { Image } from "astro:assets";
 interface Props {
     id?: string;
     icon: ImageMetadata;
+    win95Icon?: ImageMetadata;
 }
 
-const { id, icon } = Astro.props;
+const { id, icon, win95Icon } = Astro.props;
 ---
 
 <div
     id={id}
-    class="px-4 pt-6 pb-8 default-card max-w-96 lg:max-w-80 flex flex-col gap-4 items-center text-center select-none"
+    class="px-4 pt-6 pb-8 default-card max-w-96 lg:max-w-80 flex flex-col gap-4 items-center text-center select-none win95-card"
 >
     <div
         class="p-4 aspect-square flex items-center justify-center bg-white/10 rounded-full w-fit h-fit"
     >
-        <Image class="text-white" src={icon} alt="simple icon to ilustrate" />
+        {win95Icon ? (
+            <Image class="text-white win95:text-black block win95:hidden" src={icon} alt="simple icon to ilustrate" />
+            <Image
+                class="hidden win95:block text-black"
+                src={win95Icon}
+                alt="simple icon to ilustrate"
+            />
+        ) : <Image class="text-white win95:text-black" src={icon} alt="simple icon to ilustrate" />}
+        
     </div>
     <slot name="title" />
-    <p class="text-sm text-white/70">
+    <p class="text-sm text-white/70 win95:text-black/70">
         <slot />
     </p>
 </div>

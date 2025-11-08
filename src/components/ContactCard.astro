@@ -3,11 +3,12 @@ import { Image } from "astro:assets";
 
 interface Props {
     icon: ImageMetadata;
+    win95Icon: ImageMetadata;
     active?: boolean;
     text: string;
 }
 
-const { text, active, icon } = Astro.props;
+const { text, active, icon, win95Icon } = Astro.props;
 
 let activeClass = "border-transparent";
 
@@ -18,10 +19,11 @@ if (active) {
 
 <div
     class:list={[
-        "w-full flex items-center justify-start gap-4 py-3 px-5 rounded-xl border",
+        "w-full flex items-center justify-start gap-4 py-3 px-5 rounded-xl border win95-card win95:text-black",
         activeClass,
     ]}
 >
-    <Image src={icon} alt={text} width={18} />
+    <Image src={icon} alt={text} width={18} class="win95:hidden" />
+    <Image src={win95Icon} alt={text} width={18} class="hidden win95:block" />
     <p>{text}</p>
 </div>
