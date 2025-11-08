@@ -237,6 +237,22 @@ import faviconPNG from "../assets/images/favicon.png";
 <script>
 	import { animate, stagger, hover } from "motion";
 
+	const backgroundElement = document.getElementById("background");
+
+	document.addEventListener("scroll", fixBackgroundOnScroll);
+
+	fixBackgroundOnScroll();
+
+	function fixBackgroundOnScroll() {
+		if (!backgroundElement) return;
+
+		if (window.scrollY > 400) {
+			backgroundElement.style.display = "none";
+		} else {
+			backgroundElement.style.display = "block";
+		}
+	}
+
 	animate(
 		"#hero",
 		{ opacity: [0, 1], y: [-20, 0] },

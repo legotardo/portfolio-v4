@@ -78,7 +78,7 @@ async function handleSpotifyPlayingNow() {
     state.currentProgress = state.data.currentProgress || state.data.duration || 0
     clearInterval(state.interval!)
 
-    state.interval = setInterval(() => {
+    state.interval = window.setInterval(() => {
         if (state.data && state.currentProgress >= state.data.duration) {
         clearInterval(state.interval!)
         return
