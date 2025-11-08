@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import HeroAPIs from "../components/HeroAPIs/HeroAPIs.astro";
 import Layout from "../layouts/Layout.astro";
-import background from "../assets/images/background3.webp";
+import background from "../assets/images/background4.webp";
 import MarqueeLanguages from "../components/MarqueeLanguages.vue";
 import PlanetAnimation from "../components/PlanetAnimation.vue";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
@@ -86,7 +86,7 @@ import faviconPNG from "../assets/images/favicon.png";
 				</article>
 				<Image
 					id="background"
-					class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10 opacity-85 win95:hidden"
+					class="background fixed top-0 left-0 w-screen h-screen object-cover -z-10 win95:hidden"
 					src={background}
 					alt="Background"
 					loading="eager"
@@ -267,7 +267,7 @@ import faviconPNG from "../assets/images/favicon.png";
 
 			if (!backgroundElement) return;
 
-			backgroundElement.style.opacity = String(opacity);
+			backgroundElement.style.opacity = String(opacity) - 0.50;
 		});
 	}
 
@@ -333,7 +333,7 @@ import faviconPNG from "../assets/images/favicon.png";
 		}
 		100% {
 			scale: 1;
-			opacity: 1;
+			opacity: 0.50;
 			filter: blur(0px);
 		}
 	}
