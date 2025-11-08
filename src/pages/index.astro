@@ -245,7 +245,7 @@ import faviconPNG from "../assets/images/favicon.png";
 
 	const experienceCards = document.querySelectorAll("#experience-card");
 	const experienceCardsArray = experienceCards.values().toArray();
-	hover(experienceCards, (element, event) => {
+	hover(experienceCards, (element, _event) => {
 		const index = experienceCardsArray.findIndex((a) => a === element);
 		animate(element, { rotate: index % 2 === 0 ? 2 : -2 });
 
