@@ -80,11 +80,10 @@ const { id } = Astro.props;
 </section>
 
 <script>
-    async function setupSpotifyHoverIcon() {
+    function setupSpotifyCardImage() {
         const spotifyCards = document.querySelectorAll('[data-spotify-card="true"]');
         if (!spotifyCards.length) return;
 
-        let hoverImageUrl = "";
         const swapTimers = new WeakMap<HTMLImageElement, number>();
 
         function swapIconWithFade(icon: HTMLImageElement, nextSrc: string, coverMode: boolean) {
@@ -113,32 +112,36 @@ const { id } = Astro.props;
             swapTimers.set(icon, timer);
         }
 
-        window.addEventListener("spotify-track-change", (event) => {
-            if (!(event instanceof CustomEvent)) return;
-            const image = event.detail?.image;
-            if (typeof image !== "string" || !image) return;
-
-            hoverImageUrl = image;
-            const preloadImage = new window.Image();
-            preloadImage.src = hoverImageUrl;
-        });
+        const spotifyIcons: Array<{
+            icon: HTMLImageElement;
+            originalSrc: string;
+        }> = [];
 
         spotifyCards.forEach((card) => {
             const icon = card.querySelector('[data-spotify-icon="true"]');
             if (!(icon instanceof HTMLImageElement)) return;
 
-            const originalSrc = icon.currentSrc || icon.src;
-
-            card.addEventListener("mouseenter", () => {
-                if (!hoverImageUrl) return;
-                swapIconWithFade(icon, hoverImageUrl, true);
+            spotifyIcons.push({
+                icon,
+                originalSrc: icon.currentSrc || icon.src,
             });
+        });
 
-            card.addEventListener("mouseleave", () => {
-                swapIconWithFade(icon, originalSrc, false);
+        window.addEventListener("spotify-track-change", (event) => {
+            if (!(event instanceof CustomEvent)) return;
+            const image = event.detail?.image;
+            const validImage = typeof image === "string" && image ? image : null;
+
+            if (validImage) {
+                const preloadImage = new window.Image();
+                preloadImage.src = validImage;
+            }
+
+            spotifyIcons.forEach(({ icon, originalSrc }) => {
+                swapIconWithFade(icon, validImage ?? originalSrc, Boolean(validImage));
             });
         });
     }
 
-    setupSpotifyHoverIcon();
+    setupSpotifyCardImage();
 </script>
