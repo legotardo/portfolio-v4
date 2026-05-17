@@ -75,6 +75,14 @@ async function handleSpotifyPlayingNow() {
 
     if(!state.data) throw new Error("Missing spotify data")
 
+    if (state.data.image) {
+      window.dispatchEvent(
+        new CustomEvent("spotify-track-change", {
+          detail: { image: state.data.image },
+        })
+      )
+    }
+
     state.currentProgress = state.data.currentProgress || state.data.duration || 0
     clearInterval(state.interval!)
 

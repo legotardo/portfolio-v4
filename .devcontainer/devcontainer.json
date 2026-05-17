@@ -1,0 +1,16 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
+	"features": {},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"astro-build.astro-vscode",
+				"bradlc.vscode-tailwindcss",
+				"Vue.volar"
+			]
+		}
+	},
+	"postCreateCommand": "yarn install",
+	"forwardPorts": [4321]
+}

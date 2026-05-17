@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/astronomer/devcontainer-features/astro-cli:1": {
+      "version": "1.0.0",
+      "resolved": "ghcr.io/astronomer/devcontainer-features/astro-cli@sha256:ba95e4e88788fe53a8e83188f7ece121e1c35d691699c2acd4b9853b37ccf9d5",
+      "integrity": "sha256:ba95e4e88788fe53a8e83188f7ece121e1c35d691699c2acd4b9853b37ccf9d5"
+    }
+  }
+}
